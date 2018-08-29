@@ -1,0 +1,7 @@
+target
+.project
+.classpath
+.settings
+.vscode
+.DS_Store
+set_token.sh
