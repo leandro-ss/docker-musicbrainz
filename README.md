@@ -1,10 +1,10 @@
+	https://stackoverflow.com/questions/44278066/how-to-use-criteria-queries-in-spring-boot-data-jpa-application
+    https://vladmihalcea.com/14-high-performance-java-persistence-tips/
+
 musicbrainz slave server with search and replication
 ==================
 
 [![Build Status](https://travis-ci.org/metabrainz/musicbrainz-docker.svg?branch=master)](https://travis-ci.org/metabrainz/musicbrainz-docker)
-
-This repo contains everything needed to run a musicbrainz slave server with search and replication in docker.
-You will need a little over 50 gigs of free space to run this with replication.
 
 ### Versions
 * Current MB Branch: [v-2018-08-14](musicbrainz-dockerfile/Dockerfile#L26)
@@ -61,6 +61,3 @@ When there is a schema change you will need to follow the directions posted by t
 * Exit bash `exit`.
 * Set DB_SCHEMA_SEQUENCE to the NEW_SCHEMA_NUM in the [DBDefs.pm file](musicbrainz-dockerfile/DBDefs.pm#L95)
 * `sudo docker-compose stop musicbrainz` then `sudo docker-compose build musicbrainz` then `sudo docker-compose up -d --no-deps musicbrainz`
-
-If anything doesn't work create an issue and submit a pull request.
-# docker-musicbrainz
