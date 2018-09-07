@@ -1,7 +1,6 @@
 package br.com.musicbrain.server.domain;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -9,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -25,14 +26,19 @@ public class Recording {
 	@Id
 	@SequenceGenerator(sequenceName = "recording_id_seq", name = "recording_seq")
 	private Integer id;
-
+	
 	@OneToMany(mappedBy="recording", fetch=FetchType.LAZY)
-    private Set<Track> trackSet = new HashSet<>();
+	private Set<Track> trackSet;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="artist_credit", nullable=false, insertable = false, updatable = false)
+	private ArtistCredit artistCredit;
 	
 	@org.hibernate.annotations.Type(type = "pg-uuid")
 	private UUID gid;
-    private String name;
-    private Integer artist_credit;
+	private String name;
+	
+	private Integer artist_credit;
 	
     private String comment;
     private Integer length;
@@ -126,22 +132,17 @@ public class Recording {
 		return artist_credit;
 	}
 	/**
-	 * @param artist_credit the artist_credit to set
-	 */
-	public void setArtist_credit(Integer artist_credit) {
-		this.artist_credit = artist_credit;
-	}
-	/**
-	 * @return the length
-	 */
-	public Integer getLength() {
-		return length;
-	}
-	/**
 	 * @param length the length to set
 	 */
 	public void setLength(Integer length) {
 		this.length = length;
+	}
+
+	/**
+	 * @return the edits_pending
+	 */
+	public Integer getLength() {
+		return length;
 	}
 	/**
 	 * @return the edits_pending

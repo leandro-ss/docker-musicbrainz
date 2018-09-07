@@ -2,7 +2,19 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml" />
 
-    <logger name="br.com.musicbrain.server" level="error" />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>output.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="br.com.musicbrain.server" level="info" />
 
     <logger name="org.springframework.core " level="error" />
     <logger name="org.springframework.beans" level="error" />
@@ -14,10 +26,11 @@
     <logger name="org.springframework.jmx" level="error" />
     <logger name="org.springframework.data" level="error" />
     <logger name="org.springframework.aop" level="error" />
-    <logger name="org.hibernate" level="error" />
+    <logger name="org.hibernate.SQL" level="trace" />
+    <logger name="org.hibernate.type" level="debug" />
 
-    <logger name="org.hsqldb.persist" level="error" />
-    <logger name="hsqldb.db" level="error" />
-    <logger name="com.zaxxer.hikari" level="error" />    
+    <logger name="com.zaxxer.hikari" level="error" />
+    <logger name="org.postgresql" level="error" />
 
+    <logger name="org.springframework.transaction" level="info" />
 </configuration>

@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration  scan="true" scanPeriod="30 seconds">
+
     <include resource="org/springframework/boot/logging/logback/base.xml" />
 
-    <logger name="br.com.musicbrain.server" level="debug" />
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
 
-    <logger name="org.springframework.core " level="error" />
-    <logger name="org.springframework.beans" level="error" />
-    <logger name="org.springframework.context" level="error" />
-    <logger name="org.springframework.transaction" level="error" />
-    <logger name="org.springframework.web" level="error" />
-    <logger name="org.springframework.test" level="error" />
-    <logger name="org.springframework.orm" level="error" />
-    <logger name="org.springframework.jmx" level="error" />
-    <logger name="org.springframework.data" level="error" />
-    <logger name="org.springframework.aop" level="error" />
-    <logger name="org.hibernate" level="error" />
+    <jmxConfigurator/>
 
-    <logger name="org.hsqldb.persist" level="error" />
-    <logger name="hsqldb.db" level="error" />
-    <logger name="com.zaxxer.hikari" level="error" />
-                  
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>output.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="error">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <logger name="br.com.musicbrain.server" additivity="true" level="info" />
+
+    <logger name="org.springframework.core " additivity="true" level="error" />
+    <logger name="org.springframework.beans" additivity="true" level="error" />
+    <logger name="org.springframework.context" additivity="true" level="error" />
+    <logger name="org.springframework.web" additivity="true" level="error" />
+    <logger name="org.springframework.test" additivity="true" level="error" />
+    <logger name="org.springframework.orm" additivity="true" level="error" />
+    <logger name="org.springframework.jmx" additivity="true" level="error" />
+    <logger name="org.springframework.data" additivity="true" level="error" />
+    <logger name="org.springframework.aop" additivity="true" level="error" />
+    <logger name="org.springframework.transaction" additivity="true" level="error" />
+    <logger name="org.springframework.jdbc" additivity="true" level="trace" />
+
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="true" level="trace" />
+    <logger name="org.hibernate.SQL" additivity="true" level="trace" />
+    <logger name="org.hibernate.type" additivity="true" level="debug" />
+
+    <logger name="com.zaxxer.hikari" additivity="true" level="error" />
+    <logger name="org.postgresql" additivity="true" level="error" />
 </configuration>

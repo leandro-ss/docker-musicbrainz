@@ -32,7 +32,10 @@ public class Track {
 	@JoinColumn(name="recording", nullable=false)
 	private Recording recording;
 
-    private Integer medium;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="medium", nullable=false)
+	private Medium medium;
+
     private Integer position;
     private String number;
     private String name;
@@ -42,6 +45,7 @@ public class Track {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(columnDefinition= "TIMESTAMP WITH TIME ZONE")
+	
     private Date last_updated;
 	private Boolean is_data_track;
 
@@ -90,13 +94,13 @@ public class Track {
 	/**
 	 * @return the medium
 	 */
-	public Integer getMedium() {
+	public Medium getMedium() {
 		return medium;
 	}
 	/**
 	 * @param medium the medium to set
 	 */
-	public void setMedium(Integer medium) {
+	public void setMedium(Medium medium) {
 		this.medium = medium;
 	}
 	/**
