@@ -1,15 +1,11 @@
 	https://stackoverflow.com/questions/44278066/how-to-use-criteria-queries-in-spring-boot-data-jpa-application
     https://vladmihalcea.com/14-high-performance-java-persistence-tips/
+    https://www.atlassian.com/git/tutorials/syncing/git-fetch
 
 musicbrainz slave server with search and replication
 ==================
 
 [![Build Status](https://travis-ci.org/metabrainz/musicbrainz-docker.svg?branch=master)](https://travis-ci.org/metabrainz/musicbrainz-docker)
-
-### Versions
-* Current MB Branch: [v-2018-08-14](musicbrainz-dockerfile/Dockerfile#L26)
-* Current DB_SCHEMA_SEQUENCE: [24](musicbrainz-dockerfile/DBDefs.pm#L107)
-* Postgres Version: [9.5](postgres-dockerfile/Dockerfile#L1)
 
 ### Installation
 
@@ -31,11 +27,6 @@ Create the database, and populate the database with existing dumps
 
 * `sudo docker-compose run --rm musicbrainz /createdb.sh`
 
-### Build search indexes
-In order to use the search functions of the web site/API you will need to build search indexes.
-
-* `sudo docker-compose run --rm indexer /home/search/index.sh`
-
 ### Replication
 Replication is run as a cronjob, you can update the [crons.conf](musicbrainz-dockerfile/scripts/crons.conf) file to change when replication will be run.
 
@@ -47,9 +38,6 @@ you will need to enter the postgres password that you set in [postgres.env](post
 * `sudo docker-compose run --rm musicbrainz /recreatedb.sh`
 or to recreate and fetch new data dumps
 * `sudo docker-compose run --rm musicbrainz /recreatedb.sh -fetch`
-
-### Handling Schema Updates
-When there is a schema change you will need to follow the directions posted by the musicbrainz team to update the schema.
 
 ###### The usual process to update the schema is:
 
