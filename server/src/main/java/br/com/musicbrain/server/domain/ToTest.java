@@ -16,7 +16,7 @@ public class ToTest {
 	@Id
 	@GeneratedValue(generator="test_seq")
 	@SequenceGenerator(sequenceName = "to_test_seq", name = "test_seq")
-    private Integer id;    
+    private Integer id;
     private String name;
     private String description;
 

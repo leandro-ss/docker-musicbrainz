@@ -4,10 +4,7 @@
 
 musicbrainz slave server with search and replication
 ==================
-
 [![Build Status](https://travis-ci.org/metabrainz/musicbrainz-docker.svg?branch=master)](https://travis-ci.org/metabrainz/musicbrainz-docker)
-
-### Installation
 
 ###### Install and Start
 * Make sure you have installed docker and docker-compose then:
@@ -20,11 +17,9 @@ musicbrainz slave server with search and replication
 
 ### Create database
 Create the database, download the latest dumps and populate the database
-
 * `sudo docker-compose run --rm musicbrainz /createdb.sh -fetch`
 
 Create the database, and populate the database with existing dumps
-
 * `sudo docker-compose run --rm musicbrainz /createdb.sh`
 
 ### Replication
